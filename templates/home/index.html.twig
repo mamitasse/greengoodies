@@ -1,0 +1,97 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+
+<!-- HERO / BIENVENUE -->
+<section class="hero">
+    <div class="hero-text">
+        <h1>Bienvenue</h1>
+
+        <p>
+            Découvrez notre univers de produits durables et éthiques pour un
+            consommation responsable.
+        </p>
+
+        <p>
+            Retrouvez des articles d’hygiène & beauté, des accessoires
+            & boissons et du prêt à porter.
+        </p>
+    </div>
+
+    <div class="hero-image">
+        <img src="{{ asset('images/hero-home.jpg') }}" alt="Bienvenue GreenGoodies">
+    </div>
+</section>
+
+<!-- PRODUITS -->
+<section class="products-section">
+
+    <p class="section-title">NOS PRODUITS</p>
+
+    <div class="products-grid">
+        {% for product in products %}
+            <article class="product-card">
+
+                <div class="product-image-wrapper">
+                    <img src="{{ asset('images/' ~ product.picture) }}" alt="{{ product.name }}">
+                </div>
+
+                <div class="product-content">
+                    <h2>{{ product.name }}</h2>
+                    <p>{{ product.shortDescription }}</p>
+                    <p class="product-price">{{ product.price }} €</p>
+                    <a href="#" class="product-link">Voir le produit</a>
+                </div>
+
+            </article>
+        {% else %}
+            <p>Aucun produit disponible.</p>
+        {% endfor %}
+    </div>
+
+</section>
+
+<!-- SECTION CONVICTION -->
+<section class="about-section">
+
+    <div class="about-text">
+        <h3>NOTRE CONVICTION</h3>
+
+        <p>
+           Chez GreenGoodies, nous croyons en un monde où le commerce peut être synonyme de bien-être pour la planète et ses habitants. Notre mission est de vous proposer une sélection rigoureuse de produits qui allient qualité, durabilité et éthique
+        </p>
+    </div>
+
+    <div class="about-image">
+        <img src="{{ asset('images/branch.jpg') }}" alt="Décoration florale">
+    </div>
+
+</section>
+
+<!-- SECTION VALEURS -->
+<section class="values-section">
+
+    <div class="values-image">
+        <img src="{{ asset('images/bags.jpg') }}" alt="Valeurs GreenGoodies">
+    </div>
+
+    <div class="values-text">
+        <h3>NOS VALEURS</h3>
+
+        <p>
+            Durabilité : Nous sélectionnons soigneusement des produits qui
+            respectent l’environnement et favorisent la qualité.<br><br>
+
+            Éthique : Nous mettons en avant le travail de créateurs et de
+            fournisseurs qui partagent nos valeurs.<br><br>
+
+            Écologie : Nous encourageons des habitudes respectueuses de
+            l’écosystème et privilégions les matériaux durables.
+        </p>
+    </div>
+
+</section>
+
+{% endblock %}
