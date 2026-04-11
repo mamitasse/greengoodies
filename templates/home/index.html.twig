@@ -42,7 +42,7 @@
                     <h2>{{ product.name }}</h2>
                     <p>{{ product.shortDescription }}</p>
                     <p class="product-price">{{ product.price }} €</p>
-                    <a href="#" class="product-link">Voir le produit</a>
+                  <a href="{{ path('app_product_show', {'id': product.id}) }}" class="product-link">Voir le produit</a>
                 </div>
 
             </article>

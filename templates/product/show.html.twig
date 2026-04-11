@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block body %}
+
+<section class="product-page page-container">
+
+    <div class="product-detail">
+
+        <!-- IMAGE -->
+        <div class="product-detail-image">
+            <img src="{{ asset('images/' ~ product.picture) }}" alt="{{ product.name }}">
+        </div>
+
+        <!-- INFOS -->
+        <div class="product-detail-info">
+
+            <h1>{{ product.name }}</h1>
+
+            <p class="product-detail-price">
+                {{ product.price }} €
+            </p>
+
+            <p class="product-detail-description">
+                {{ product.fullDescription }}
+            </p>
+
+           <a href="{{ path('app_cart_add', {id: product.id}) }}" class="btn-add-cart">
+    Ajouter au panier
+</a> <button class="btn-add-cart">
+                Ajouter au panier
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
