@@ -5,34 +5,52 @@
     <title>{% block title %}GreenGoodies{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
+    <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('styles/app.css') }}">
 </head>
+
 <body>
 
+<!-- HEADER -->
 <header class="site-header">
     <div class="page-container header-inner">
+
+        <!-- LOGO -->
         <div class="logo">
             <img src="{{ asset('images/logo.png') }}" alt="Logo GreenGoodies">
             <span>Green Goodies</span>
         </div>
 
+        <!-- NAVIGATION -->
         <nav class="main-nav">
+
             <a href="{{ path('app_home') }}">Nos produits</a>
-            <a href="#">Mon panier</a>
-            <a href="#">Mon compte</a>
-            <a href="#">Déconnexion</a>
+
+            {% if app.user %}
+                <a href="#">Mon panier</a>
+                <a href="#">Mon compte</a>
+                <a href="{{ path('app_logout') }}">Déconnexion</a>
+            {% else %}
+                <a href="{{ path('app_login') }}">Connexion</a>
+                <a href="{{ path('app_register') }}">Inscription</a>
+            {% endif %}
+
         </nav>
+
     </div>
 </header>
 
+<!-- MAIN -->
 <main class="page-container">
     {% block body %}{% endblock %}
 </main>
 
+<!-- FOOTER -->
 <footer class="site-footer">
     <div class="page-container footer-inner">
         <p>© GreenGoodies - 2024</p>

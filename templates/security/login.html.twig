@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block body %}
+
+<section class="auth-layout">
+
+    <div class="auth-image">
+        <img src="{{ asset('images/branch.jpg') }}" alt="Connexion GreenGoodies">
+    </div>
+
+    <div class="auth-form">
+        <h1 class="auth-title">Connexion</h1>
+
+        {% if error %}
+            <div class="form-error">
+                {{ error.messageKey|trans(error.messageData, 'security') }}
+            </div>
+        {% endif %}
+
+        <form method="post" class="auth-form-fields">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+            <div class="form-group">
+                <label for="inputEmail">Adresse email</label>
+                <input
+                    type="email"
+                    value="{{ last_username }}"
+                    name="email"
+                    id="inputEmail"
+                    autocomplete="email"
+                    required
+                    autofocus
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="inputPassword">Mot de passe</label>
+                <input
+                    type="password"
+                    name="password"
+                    id="inputPassword"
+                    autocomplete="current-password"
+                    required
+                >
+            </div>
+
+            <button class="auth-button" type="submit">Se connecter</button>
+        </form>
+
+        <p class="auth-link">
+            Pas encore de compte ? <a href="{{ path('app_register') }}">S’inscrire</a>
+        </p>
+    </div>
+
+</section>
+
+{% endblock %}

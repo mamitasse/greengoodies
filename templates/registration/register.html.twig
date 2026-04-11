@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+
+<section class="auth-layout">
+
+    <!-- IMAGE -->
+    <div class="auth-image">
+        <img src="{{ asset('images/bags.jpg') }}" alt="Inscription">
+    </div>
+
+    <!-- FORMULAIRE -->
+    <div class="auth-form">
+
+        <h1 class="auth-title">Inscription</h1>
+        <p class="auth-subtitle">Tous les champs sont obligatoires.</p>
+
+        {{ form_start(registrationForm, {'attr': {'class': 'auth-form-fields'}}) }}
+
+            <div class="form-group">
+                {{ form_label(registrationForm.lastName) }}
+                {{ form_widget(registrationForm.lastName) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(registrationForm.firstName) }}
+                {{ form_widget(registrationForm.firstName) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(registrationForm.email) }}
+                {{ form_widget(registrationForm.email) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(registrationForm.plainPassword.first) }}
+                {{ form_widget(registrationForm.plainPassword.first) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(registrationForm.plainPassword.second) }}
+                {{ form_widget(registrationForm.plainPassword.second) }}
+            </div>
+
+            <div class="form-checkbox">
+                {{ form_widget(registrationForm.agreeTerms) }}
+                {{ form_label(registrationForm.agreeTerms) }}
+            </div>
+
+            <button type="submit" class="auth-button">S'inscrire</button>
+
+        {{ form_end(registrationForm) }}
+
+        <p class="auth-link">
+            Déjà un compte ? <a href="{{ path('app_login') }}">Se connecter</a>
+        </p>
+
+    </div>
+
+</section>
+
+{% endblock %}
