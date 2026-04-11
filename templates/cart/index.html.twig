@@ -1,20 +1,52 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CartController!{% endblock %}
+{% block title %}Mon panier{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<section class="cart-page page-container">
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/Users/idiri/greengoodies/src/Controller/CartController.php</code></li>
-        <li>Your template at <code>C:/Users/idiri/greengoodies/templates/cart/index.html.twig</code></li>
-    </ul>
+    <h1 class="cart-title">Mon panier</h1>
+
+<div class="cart-header">
+    <a href="{{ path('app_cart_clear') }}" class="cart-clear">
+        <span class="cart-clear-icon">×</span> Vider le panier
+    </a>
 </div>
+
+    {% if cart is empty %}
+        <p>Votre panier est vide</p>
+    {% else %}
+
+    <div class="cart-card">
+
+        {% for item in cart %}
+        <div class="cart-item">
+
+            <img src="{{ asset('images/' ~ item.product.picture) }}" alt="{{ item.product.name }}">
+
+            <div class="cart-item-info">
+                <p class="cart-name">{{ item.product.name }}</p>
+                <p>Quantité : {{ item.quantity }}</p>
+                <p class="cart-price">{{ item.product.price }} €</p>
+            </div>
+
+        </div>
+        {% endfor %}
+
+        <div class="cart-total">
+            <p>Total panier : <strong>{{ total }} €</strong></p>
+            <p class="shipping">Frais de livraison offerts</p>
+        </div>
+
+    </div>
+
+    <button class="btn-cart">
+        Valider la commande
+    </button>
+
+    {% endif %}
+
+</section>
+
 {% endblock %}
