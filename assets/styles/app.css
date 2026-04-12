@@ -1078,3 +1078,15 @@ ul li {
     border: none;
     cursor: pointer;
 }
+.order-success {
+    padding: 80px 0;
+    text-align: center;
+}
+
+.order-success h1 {
+    margin-bottom: 16px;
+}
+
+.order-success p {
+    margin-bottom: 24px;
+}
