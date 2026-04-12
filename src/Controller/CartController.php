@@ -23,7 +23,7 @@ class CartController extends AbstractController
 
         $session->set('cart', $cart);
 
-        return $this->redirectToRoute('app_home');
+        return $this->redirectToRoute('app_cart');
     }
 
     #[Route('/cart', name: 'app_cart')]
@@ -53,11 +53,43 @@ class CartController extends AbstractController
         ]);
     }
 
-    #[Route('/cart/clear', name: 'app_cart_clear')]
-public function clear(SessionInterface $session): Response
-{
-    $session->remove('cart');
+    #[Route('/cart/remove/{id}', name: 'app_cart_remove')]
+    public function remove(int $id, SessionInterface $session): Response
+    {
+        $cart = $session->get('cart', []);
 
-    return $this->redirectToRoute('app_cart');
-}
+        if (!empty($cart[$id])) {
+            if ($cart[$id] > 1) {
+                $cart[$id]--;
+            } else {
+                unset($cart[$id]);
+            }
+        }
+
+        $session->set('cart', $cart);
+
+        return $this->redirectToRoute('app_cart');
+    }
+
+    #[Route('/cart/delete/{id}', name: 'app_cart_delete')]
+    public function delete(int $id, SessionInterface $session): Response
+    {
+        $cart = $session->get('cart', []);
+
+        if (isset($cart[$id])) {
+            unset($cart[$id]);
+        }
+
+        $session->set('cart', $cart);
+
+        return $this->redirectToRoute('app_cart');
+    }
+
+    #[Route('/cart/clear', name: 'app_cart_clear')]
+    public function clear(SessionInterface $session): Response
+    {
+        $session->remove('cart');
+
+        return $this->redirectToRoute('app_cart');
+    }
 }
