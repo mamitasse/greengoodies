@@ -4,31 +4,34 @@
 
 {% block body %}
 
-<section class="product-page page-container">
+<section class="product-page">
 
-    <div class="product-detail">
+    <div class="product-container">
 
         <!-- IMAGE -->
-        <div class="product-detail-image">
-            <img src="{{ asset('images/' ~ product.picture) }}" alt="{{ product.name }}">
+        <div class="product-image">
+             <img src="{{ asset('images/' ~ product.picture) }}" alt="{{ product.name }}">
         </div>
 
         <!-- INFOS -->
-        <div class="product-detail-info">
+        <div class="product-info">
 
             <h1>{{ product.name }}</h1>
 
-            <p class="product-detail-price">
-                {{ product.price }} €
+            <p class="price">
+                {{ product.price|number_format(2, ',', ' ') }} €
             </p>
 
-            <p class="product-detail-description">
+            <h3>Description</h3>
+
+            <p class="description">
                 {{ product.fullDescription }}
             </p>
 
-           <a href="{{ path('app_cart_add', {id: product.id}) }}" class="btn-add-cart">
-    Ajouter au panier
-</a>
+            <a href="{{ path('app_cart_add', {id: product.id}) }}" class="btn-add">
+                Ajouter au panier
+            </a>
+
         </div>
 
     </div>
