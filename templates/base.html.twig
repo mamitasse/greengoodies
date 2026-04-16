@@ -23,7 +23,7 @@
         <!-- LOGO -->
         <div class="logo">
             <img src="{{ asset('images/logo.png') }}" alt="Logo GreenGoodies">
-            <span>Green Goodies</span>
+         
         </div>
 
         <!-- NAVIGATION -->
@@ -32,8 +32,8 @@
             <a href="{{ path('app_home') }}">Nos produits</a>
 
             {% if app.user %}
-                <a href="#">Mon panier</a>
-                <a href="#">Mon compte</a>
+                <a href="{{ path('app_order_validate') }}">Mon panier</a>
+                <a href="{{ path('app_account') }}">Mon compte</a>
                 <a href="{{ path('app_logout') }}">Déconnexion</a>
             {% else %}
                 <a href="{{ path('app_login') }}">Connexion</a>

@@ -47,8 +47,8 @@ a {
 }
 
 .logo img {
-    width: 18px;
-    height: 18px;
+    width: 124px;
+    height: 19px;
 }
 
 .logo span {
@@ -929,6 +929,7 @@ ul li {
     padding: 14px 30px;
     border: none;
     cursor: pointer;
+    text-align: center;
 }
 .cart-clear {
     display: inline-flex;
@@ -1089,4 +1090,75 @@ ul li {
 
 .order-success p {
     margin-bottom: 24px;
+}
+/* PAGE MON COMPTE */
+
+.account-page {
+    padding: 60px 0;
+    text-align: center;
+}
+
+.account-title {
+    margin-bottom: 40px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.account-card {
+    background: #ffffff;
+    max-width: 520px;
+    margin: 0 auto 20px;
+    padding: 30px;
+    text-align: left;
+    border: 1px solid #eee;
+}
+
+.account-card h2 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 18px;
+}
+
+.orders-table {
+    margin-top: 10px;
+}
+
+.orders-header,
+.orders-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    padding: 10px 0;
+    font-size: 14px;
+}
+
+.orders-header {
+    font-weight: 600;
+    border-bottom: 1px solid #ddd;
+}
+
+.orders-row {
+    border-bottom: 1px solid #eee;
+}
+
+.orders-empty {
+    font-size: 14px;
+    color: #666;
+}
+
+.btn-account {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: #5a5a5a;
+    color: white;
+    padding: 14px;
+    margin-top: 10px;
+    border: none;
+}
+
+.btn-account.danger {
+    background: #444444;
+}
+.btn-add-cart{
+    text-align: center;
 }
