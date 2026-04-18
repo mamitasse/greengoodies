@@ -13,28 +13,48 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class RegistrationController extends AbstractController
 {
+    // Route pour afficher et traiter le formulaire d'inscription
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
+    public function register(
+        Request $request,
+        UserPasswordHasherInterface $userPasswordHasher,
+        EntityManagerInterface $entityManager
+    ): Response
     {
+        // Création d’un nouvel objet User (vide)
         $user = new User();
+
+        //Création du formulaire basé sur RegistrationFormType
+        // On lie directement le formulaire à l’objet User
         $form = $this->createForm(RegistrationFormType::class, $user);
+
+        //Traitement de la requête HTTP (remplit le formulaire avec les données envoyées)
         $form->handleRequest($request);
 
+        // Vérifie si le formulaire a été soumis ET qu’il est valide
         if ($form->isSubmitted() && $form->isValid()) {
+
             /** @var string $plainPassword */
+            // Récupération du mot de passe en clair depuis le formulaire
             $plainPassword = $form->get('plainPassword')->getData();
 
-            // encode the plain password
-            $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword));
+            // Hash du mot de passe (sécurité Symfony)
+            // On ne stocke jamais le mot de passe en clair
+            $user->setPassword(
+                $userPasswordHasher->hashPassword($user, $plainPassword)
+            );
 
+            // Préparation de l’insertion en base de données
             $entityManager->persist($user);
+
+            // Exécution de la requête (INSERT en base)
             $entityManager->flush();
 
-            // do anything else you need here, like send an email
-
+            // Redirection vers la page d’accueil après inscription
             return $this->redirectToRoute('app_home');
         }
 
+        // Affichage du formulaire dans la vue Twig
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form,
         ]);
